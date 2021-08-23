@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Map Demo</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <style>
+      .btn {
+       height: 30px;
+       background-color: orange;
+       border-block-color: black;
+       width: 100px;
+       text-align: right;
+     }
+    </style>
+    <script src="./lib/jquery-3.6.0.js"></script>
+    <script src="./lib/coffeescript.js"></script>
+    <script src="./js/map.js"></script>
+
+
+    <script>
+      $( document ).ready(function() {
+          $( "p" ).click(function( event ) {
+              alert( "Thanks for visiting!" );
+          });
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <h1>Java Script Map Demo </h1>
+    <p>Look at the console Logs </p>
+    <input type="button" onclick="demoMap();" name="clickmeee" value="Hello" class="btn">
+
+
+  </body>
+</html>

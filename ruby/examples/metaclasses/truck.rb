@@ -1,9 +1,13 @@
 # based on https://viewsourcecode.org/why/hacking/seeingMetaclassesClearly.html
-# require_relative 'metaid'
+require_relative 'metaid'
 class MailTruck
   attr_accessor :driver, :route
   def initialize( driver, route )
     @driver, @route = driver, route
+  end
+
+  def self.company( name )
+    meta_def :company do; name; end
   end
 
   @@trucks = [] # class variable
@@ -23,6 +27,12 @@ class MailTruck
   end
 
 end
+
+class HappyTruck < MailTruck
+  company "Happy's -- We Bring the Mail, and That's It!"
+end
+
+p "#{HappyTruck.company}"
 
 mt = MailTruck.new( "Harold", ['12 Corrigan Way', '23 Antler Ave'] )
 MailTruck.addTruck("Royal Mail Truck")

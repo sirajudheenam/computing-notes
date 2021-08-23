@@ -1,4 +1,11 @@
-class Object
+# https://github.com/whymirror/metaid/blob/master/lib/metaid.rb
+ # metaid
+ # ------
+ # a few simple metaclass helpers
+ #
+ # http://github.com/dannytatom/metaid
+
+ class Object
    # The hidden singleton lurks behind everyone
    def metaclass; class << self; self; end; end
    def meta_eval &blk; metaclass.instance_eval &blk; end
@@ -7,9 +14,15 @@ class Object
    def meta_def name, &blk
      meta_eval { define_method name, &blk }
    end
+ end
 
-   # Defines an instance method within a class
-   def class_def name, &blk
-     class_eval { define_method name, &blk }
+ class Module
+   # Defines an instance method within a module
+   def module_def name, &blk
+     module_eval { define_method name, &blk }
    end
+ end
+
+ class Class
+   alias class_def module_def
  end

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+
+}
+div {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+ }
+
+.stringDiv {
+  /* position: absolute; */
+  top: 20px;
+}
+.title {
+  background-color: yellow;
+  padding: 5px;
+  text-transform: capitalize;
+}
+.menuDiv {
+  /* rgba(r,g,b,opacity number[0 transparent, 1 Opaque]); */
+  /* background-color: rgba(255,125,125,0.75); */
+  /* background-image: linear-gradient(); */
+  color: blue;
+  height: 3rem;
+  border-radius: 1rem;
+  /* Space between other items eg., div */
+  margin: 2px .75% 2rem;  /* top:            2px margin */
+                          /* left and right: 0.5% margin   */
+                          /* bottom:         1rem margin */
+  display: block;
+  padding: 0.3rem 0.8rem;
+  /* Nice Linear Gradients */
+  /* https://www.eggradients.com/linear-gradients?2dd4a736_page=2 */
+  background-color: #36096d;
+  background-image: linear-gradient(180deg, #36096d 0%, #37d5d6 74%);
+}
+.menuItems {
+
+}
+.headerDiv {
+  border-radius: 2rem;
+  margin: 5px;
+  font-size: 16px;
+  border: 1px;
+  /* background-color: yellow;   */
+  text-align: center;
+  background-color: #f7b42c;
+  background-image: linear-gradient(315deg, #f7b42c 0%, #fc575e 74%);
+
+}
+.mainDiv {
+  /* div content */
+  font-size: 16px;
+  margin: 5px;
+  background-color: orange;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  overflow: hidden;
+
+  display: flex; /*block flex */
+  /* border: 1px solid black; */
+
+  /* div content */
+
+  height: 100vh;
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+}
+
+#toolbar-Div {
+  display: block;
+  background-color: rgb(171, 184, 245);
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+
+}
+#showToolBar {
+  padding: 0.5rem;
+  display: block;
+  float: right;
+  background-color: yellow;
+  height: 2rem;
+  width: 10rem;
+}
+
+.labelToolbar{
+  font-size: 20px;
+  float: right;
+}
+
+/* box-model starts */
+.box {
+  color: #fff;
+  box-shadow: 0 3rem 5rem rgba(255, 255, 255, 0.85);
+  border: .25 rem;
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+}
+
+.box:hover {
+  /* transform: rotate(180deg);*/
+  transition: all 1s ease-out;
+  scale: 0.9;
+}
+.top-box {
+  background-image: linear-gradient(to bottom right, #753682 0%, #bf2e34 100%);
+  width: 140rem;
+  height: 45rem;
+}
+
+.outer-box {
+  background-color: #a40606;
+  background-image: linear-gradient(215deg, #a40606 0%, #d98324 74%);
+
+  width: 120rem;
+  height: 35rem;
+  /* background-color: green; */
+}
+
+.inner-box{
+  width: 100rem;
+  height: 15rem;
+  background-color: #0cbaba;
+  background-image: linear-gradient(280deg, #0cbaba 0%, #380036 74%);
+  align-items: right;
+}
+/* box-model ends */
+
+/*  Linear gradient starts */
+.linear-gradient {
+  position: relative;
+  width: 150rem;
+  height: 55rem;
+  /* background-color: rgba(255, 255, 255, 0.35); */
+  /* background-image: linear-gradient(to bottom right, #0cbaba 0%, #380036 60%); */
+  background-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  backdrop-filter: blur(200px);
+  filter: blur();
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  overflow: hidden;
+  display: flex;
+  padding: 5rem;
+}
+
+.linear-gradient:hover {
+  scale: 0.99;
+  /* transform: skew(-0.03turn, 1deg); */
+  /* transform: skew(-0.06turn, 18deg); */
+  background-image: linear-gradient(to top left, #0cbaba 0%, #380036 60%);
+}
+.linear-gradient header {
+  display: inline-flex;
+}
+.lg {
+  flex: 25%;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.75s;
+  box-shadow: inherit;
+  border-radius: 2rem;
+  margin: 0.5rem;
+}
+.lg:hover {
+  scale: 50%;
+  /* transform: rotate(350deg); */
+  /* transform: skew(15deg, 15deg); */
+  /* transform: skew(-0.09turn, 18deg); */
+  /* transform: skew(.312rad); */
+}
+.lg--animation{
+  transform: rotate(180deg);
+  transition: all 2s ease-out;
+}
+.lg--01 {
+  /* background: rgba(0, 0, 0, 0) linear-gradient(rgb(230, 100, 101), rgb(145, 152, 229)) repeat scroll 0% 0%; */
+  background-image: linear-gradient(#e66465, #9198e5);
+
+}
+.lg--01:hover{
+  transform: skew(0deg, 7deg);
+  /* background-color: yellow; */
+  /* transition: all 2s ease-out; */
+}
+.lg--02 {
+  background-image: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+}
+.lg--03 {
+  background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
+}
+.lg--04 {
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+
+}
+
+/*  Linear gradient ends */
+
+.btn {
+  height: 25px;
+  background-color: orange;
+  /* color: black; */
+  border-radius: 10px;
+  width: 90px;
+  text-align: center;
+}
+
+.footerDiv {
+
+}
+.hidden {
+  display: none;
+}

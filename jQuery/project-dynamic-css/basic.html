@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dynamic CSS Style with jQuery</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="../../lib/jquery-3.6.0.js"></script>
+    <!-- <script src="../lib/coffeescript.js"></script> -->
+    <!-- <link rel="stylesheet" href="~/Development/lib/bootstrap.css" /> -->
+    <link rel="stylesheet" href="./basic.css" />
+    <script src="basic.js"></script>
+
+</head>
+
+<body>
+
+<div class='menuDiv'>
+  <label for="showElement">Show Element</label>
+  <select class="show-element" id="show-element">
+    <option value="box-model" selected="selected">Box Model</option>
+    <option value="linear-gradient">linear-gradient</option>
+  </select>
+  <button id="toggleButton" class="btn btn-toggle">Toggle</button>
+  <button id="resetButton" class="btn btn-reset">Reset</button>
+
+  <label for="element">Element</label>
+  <select class="element" id="element">
+    <option value="p" selected="selected">paragraph</option>
+    <option value="div">div</option>
+    <option value="h1">h1</option>
+    <option value="h2">h2</option>
+  </select>
+
+  <label for="styleType">Style Type</label>
+  <select class="styleType" id="styleType">
+    <option value="background-color" selected="selected">Background Color</option>
+    <option value="color">Text Color</option>
+  </select>
+
+  <label for="color">Color</label>
+  <select class="color" id="color">
+    <option value="blue" selected="selected">Blue</option>
+    <option value="green">Green</option>
+    <option value="red">Red</option>
+    <option value="yellow">Yellow</option>
+    <option value="pink">Pink</option>
+  </select>
+
+  <button id="changeStyle" value="Change" class="btn">Change Style</button>
+  <label for="animationDuration" class='lblAnimationDuration'>Animation Duration</label>
+  <input type="text" value="2000" id="animationDuration" onChange="changeAnimationDuration()" />
+  <input name="showToolBar" type='checkbox' id="showToolBar" class="btn-showToolBar" />
+  <label for="showToolBar" class='labelToolbar'>Tool Bar</label>
+</div>
+
+<div class='headerDiv'>
+  Header
+  <a href="https://learn.jquery.com" class="jQLearnLink">Learn jQuery </a>
+  <button id="changeLink" class="btn btn-changeLink">Change Link</button>
+</div>
+
+
+  <div id='toolbar-Div' class='toolbar-Div'>
+    <h2>Tools</h2>
+    <div id="tool-lg" class="tool-lg">
+      <label for="Property">Property</label>
+      <select class="lg-property" id="lg-property" onchange="propChange(this.value)">
+        <option value="lg-display" selected="selected">Display</option>
+        <option value="lg-box-sizing">Box-Sizing</option>
+      </select>
+      <div id="lg-value"></div>
+    </div>
+  </div>
+
+  <div id="mainDiv" class='mainDiv'>Main DIV
+    <!-- linear-gradient starts-->
+    <div class='linear-gradient' id='linear-gradient'>
+      <div class='lg lg--01' id='lg-01'>
+        <div class="title">Linear-Gradient 01</div>
+      </div>
+      <div class='lg lg--02' id='lg-02'>
+        <div class="title">Linear-Gradient 02</div>
+      </div>
+      <div class='lg lg--03' id='lg-03'>
+        <div class="title">Linear-Gradient 03</div>
+      </div>
+      <div class='lg lg--04' id='lg-04'>
+        <div class="title">Linear-Gradient 04</div>
+      </div>
+    </div>
+    <!-- linear-gradient ends-->
+
+    <!-- Box Model starts-->
+    <div id="box-model" class='box-model'>
+
+      <div class='box top-box'><div class="stringDiv">Box</div>
+        <div class='box outer-box'><div class="stringDiv">Outer Box</div>
+          <div class='box inner-box'><div class="stringDiv">Inner Box</div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <!-- Box Model ends -->
+
+  </div>
+
+
+<div class='footerDiv'>
+  Footer
+</div>
+
+
+</body>
+
+</html>

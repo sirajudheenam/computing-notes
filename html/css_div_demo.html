@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Map Demo</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script src="./lib/jquery-3.6.0.js"></script>
+    <script src="./lib/coffeescript.js"></script>
+    <script>
+      $( document ).ready(function() {
+          $( "p" ).click(function( event ) {
+              alert( "Thanks for visiting!" );
+          });
+          $( "div" ).click(function() {
+            var color = $( this ).css( "background-color" );
+            $( "#result" ).html( "That div is <span style='color:" +
+              color + ";'>" + color + "</span>." );
+          });
+      });
+    </script>
+
+    <style>
+      div {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        float: left;
+      }
+      .btn {
+         height: 30px;
+         background-color: orange;
+         border-block-color: black;
+         width: 100px;
+         text-align: right;
+     }
+    </style>
+</head>
+
+<body>
+
+  <h1>CSS Demo </h1>
+  <br />
+  <p>This is a CSS Demo </p>
+  <br />
+  <span id="result">&nbsp;</span>
+  <div style="background-color:blue;"></div>
+  <div style="background-color:rgb(15,99,30);"></div>
+  <div style="background-color:#123456;"></div>
+  <div style="background-color:#f11;"></div>
+
+  <input type="button" name="myButton" value="myButton" class="btn">
+</body>
+</html>

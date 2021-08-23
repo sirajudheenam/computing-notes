@@ -1,0 +1,15 @@
+%html 
+    %head 
+        %title Basic Haml Template
+  
+    %body
+        %div#container
+            %p Hi, no script applied yet!
+  
+        :javascript
+            var tag = document.createElement("p");
+            var text = document.createTextNode(
+            "Inline JavaScript is applied!");
+            tag.appendChild(text);
+            var element = document.getElementById("container");
+            element.appendChild(tag); 

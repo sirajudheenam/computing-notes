@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+  <title>HTML TEMPLATE</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <style type="text/css" media="screen"></style> -->
+  <script src="../../../../lib/jquery.min.js"></script>
+  <script src="../../../../lib/popper.min.js"></script>
+  <script src="../../../../lib/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="../../../../lib/coffeescript.js"></script>
+
+  <link rel="stylesheet" href="../../../../lib/bootstrap.min.css">
+
+  <style type="text/css">
+    #container {
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    table {
+      border-collapse: collapse;
+      background-color: #f3f3f3;
+    }
+    caption {
+      background-color: #1276bc;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      border:  1px solid black;
+      height: 30px;
+    }
+
+    tr, td, th {
+      border: 1px solid black;
+    }
+    td, th {
+     padding: 5px;
+    }
+    .over {
+      background-color: #ff8b00;
+      color: white;
+    }
+    .clicked {
+      background-color: #1276bc;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <script>
+    $( function() {
+      $("tr").mouseover( 
+        function(event) {
+          $(this).addClass('over');
+          console.log("Table Row mouse over");
+      }
+      ).mouseleave( 
+        function() {
+          $(this).removeClass('over');
+          console.log("Table Row mouse leave");
+      }
+      ).click(
+        function() {
+          if ( $(this).hasClass('clicked') ) {
+            $(this).removeClass('clicked');
+          } else {
+            $(this).removeClass('over').addClass('clicked')
+          }
+          console.log("Table Row clicked");
+      });
+    });
+  </script>
+
+
+<div id="container">
+  <table>
+    <caption> Today is 31 May 2021 </caption>
+    <tr>
+      <td>It is Corona time</td> <td> Wear a Mask</td>
+    </tr>
+    <tr>
+      <td>Mask is supposed to be N95</td> <td>Ordinary mask won't work</td>
+    </tr>
+    <tr>
+      <td>2 Meter distance needed </td> <td>It can spread from upto 5 meters</td>
+    </tr>
+    <tr>
+      <td>Our village is Kanniyakurichi</td> <td>to be exact Baloji Ragunatha Samuthiram</td>
+    </tr>
+        <tr>
+      <td>Samuthiram means Ocean</td> <td>Kadal means Sea in Tamil</td>
+    </tr>
+    <tr>
+      <td>Most burials we never attended</td> <td>Relatives may be angry</td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>
