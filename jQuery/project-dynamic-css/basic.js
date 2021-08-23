@@ -121,9 +121,11 @@ $( function() {
       // attributes & html in jQuery
       $('#changeLink').click(function() {
         console.log('change link clicked');
-        lynk = $('a.jQLearnLink').attr('href');
+        // Get Attribute using attr of jQuery
+        old_lynk = $('a.jQLearnLink').attr('href');
         console.log('Existing Link : ');
-        console.log(lynk);
+        console.log(old_lynk);
+        // Set Attribute using attr of jQuery
         $('a.jQLearnLink').attr('href', 'https://jquery.com');
         $('a.jQLearnLink').html('jQUERY');
         lynk = $('a.jQLearnLink').attr('href');
