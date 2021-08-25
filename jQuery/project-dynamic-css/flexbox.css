@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  /*default font-size: 16px; 16/10 = 0.625 */
+  font-size: 62.5%; /* 1 rem = 10px */
+  box-sizing: border-box;
+}
+
+body {
+
+}
+div {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+
+  /* Flexible Resizable  */
+  min-height: 2rem;
+  min-width: 2rem;
+  /* resize: both; */
+  overflow: auto;
+  max-height: fit-content;
+  max-width: fit-content;
+ }
+
+.top-container {
+  margin: 1rem;
+  padding: 1rem;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: 1rem;
+  height: 100vh;
+  background-color: orange;
+}
+
+.first-container {
+  display: flex;
+}
+
+.box-sizing-container {
+  background-color: white;
+  border: solid #000 .5rem;
+  border-radius: 1rem;
+  border: solid #5B6DCD .1rem;
+  margin: 1rem;
+  width: 70%;
+
+}
+.tools-container {
+  width: 30%;
+  border: solid #5B6DCD .1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  background-color: white;
+}
+
+#box-sizing-container-01 {
+  box-sizing: content-box;
+
+  background-color: orange;
+  border: solid #5B6DCD .1rem;
+  margin: .5rem;
+}
+
+#box-sizing-container-02 {
+  box-sizing: content-box;
+
+  border: solid #5B6DCD .1rem;
+  padding: 1rem;
+
+  background-color: orange;
+  margin: 1rem;
+}
+#box-sizing-container-03 {
+  box-sizing: border-box;
+
+  border: solid #5B6DCD .1rem;
+  padding: 1rem;
+
+  background-color: orange;
+  margin: 1rem;
+}
+
+
+
+.parent {
+  background-color: pink;
+  margin: .2rem;
+  border: solid #fff .1rem;
+  border-radius: .5rem;
+}
+
+.child {
+  background-color: green;
+  margin: .2rem;
+  border: solid #fff .1rem;
+  border-radius: .5rem;
+}
+
+/* flex model */
+.flexbox-container {
+  padding: .5rem;
+  margin: 1rem;
+  background-color: yellow;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: .5rem;
+}
+
+.fl {
+  padding: .5rem;
+  margin: 1rem;
+  background-color: #eee;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: .5rem;
+}
+
+.flexbox-container-01 {
+  display: flex;
+  flex-direction: row;
+
+  background-color: pink;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: .5rem;
+}
+
+.flexbox-container-02 {
+  display: flex;
+  flex-direction: row-reverse;
+
+  background-color: green;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: .5rem;
+}
+
+.flexbox-container-03 {
+  display: flex;
+  flex-direction: column;
+
+  background-color: orange;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: .5rem;
+}
+
+.flexbox-container-04 {
+  display: flex;
+  flex-direction: column-reverse;
+
+  background-color: white;
+  border: solid #5B6DCD 0.1rem;
+  border-radius: .5rem;
+}

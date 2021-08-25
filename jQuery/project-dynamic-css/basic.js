@@ -4,60 +4,68 @@ let mainDivContent;
 let animationDuration = 0;
 // implicit $( document ).ready( function() {});
 $( function() {
-    init();
+    initialize();
 
     var style = {}
       // Call init on Reset
-      $('#resetButton').click(init);
+      $('#resetButton').click(initialize);
 
-      $('#toggleButton').click(function(e) {
+      $('#toggleButton').click(function() {
+        // initialize();
+        console.log(`mainDivContent: ${mainDivContent}`);
+
         // Selecting a Select Option Value using ID
         if (mainDivContent) {
-          $(`.${mainDivContent}`).toggle(animationDuration);
+          $(`.${mainDivContent}`).toggle();
           mainDivContent = "";
         } else {
           mainDivContent = $('select#show-element').val();
-          $(`.${mainDivContent}`).show(animationDuration);
+          $(`.${mainDivContent}`).toggle();
         }
-        // console.log(mainDivContent);
+
       });
+
+      $('#flex-direction').change( function() {
+        if ($('#lg-value').val() === 'flex') {
+          $( '#mainDiv').css("flex-direction", $(this).val());
+        }
+      });
+
+      // Check Visibility and clears
+      const clearMainDivContent = function() {
+        if ($( "#linear-gradient" ).is( ":visible" )) {
+          console.log("linear-gradient is Visible");
+        }
+        if ($('#box-model').is( ":visible" )) {
+          console.log("box-model is Visible");
+        }
+        if ($("#select-elements").is( ":visible" )) {
+          console.log("select-elements is Visible");
+        }
+      }
+
 
       // CheckBox validation
       $('#showToolBar').change( function() {
         // console.log(mainDivContent);
         var $element = $( this );
         toolbar = $('#toolbar-Div');
+        toolbar_checked = $element.prop( "checked" ); //$element.is( ":checked" )
         toolbar.html("<h2>Tools: </h2><ul>" + mainDivContent ? mainDivContent : "" + "</ul>");
         mainDivContent = $('select#show-element').val();
-        if (mainDivContent === 'linear-gradient') {
-          console.log('lg');
-          toolbar.show();
-          $('#tool-lg').toggle(animationDuration);
-
-        } else if (mainDivContent === 'box-model') {
-          console.log('bm');
+        if (toolbar_checked) {
+          if (mainDivContent === 'linear-gradient') {
+            console.log('lg !!  ');
+            toolbar.show();
+            $('#tool-lg').toggle(animationDuration);
+          } else if (mainDivContent === 'box-model') {
+            toolbar.show();
+            console.log('box-model!!');
+          } else if (mainDivContent === 'select-elements') {
+            toolbar.show();
+            console.log('select-elements!!');
+          }
         }
-        // console.log($element.prop( "checked" ));
-        // console.log($element.is( ":checked" ));
-
-          // if ($element.prop( "checked" )) {
-          //   toolbar.show();
-          // } else {
-          //   toolbar.hide();
-          // }
-
-        // $(".linear-gradient").children().each(function(index){
-        //   console.log('Value:')
-        //   console.log($(this));
-        //   console.log(index);
-        // });
-        // htmlValue = toolbar.html();
-        // console.log(htmlValue);
-        // console.log($('#mainDiv'));
-        // console.log(mainDivContent);
-        // console.log(toolbar.html());
-
-        // console.log($('#mainDiv').html());
       });
 
 
@@ -78,11 +86,12 @@ $( function() {
       });
 
       $('#showElement').change(function(e) {
-        // showElement = $('select.showElement').val();
-        // console.log(showElement);
-        contentToDisplay = e.target.value;
-        console.log(contentToDisplay);
-        $(`.${contentToDisplay}`).toggle(animationDuration);
+        // // showElement = $('select.showElement').val();
+        // // console.log(showElement);
+        // contentToDisplay = e.target.value;
+        // console.log(contentToDisplay);
+        // $(`.${contentToDisplay}`).toggle();
+
       });
 
       $('.lg').click(function(e) {
@@ -100,24 +109,7 @@ $( function() {
         //   console.log(`lg--animation class is added to : ${target}`);
         //   animationAdded = true;
         // }
-
       });
-
-
-      // style = { backgroundColor: "red" , color: "blue" }
-      // changeStyle( "p", style);
-      // style = { "background-color": "blue" , color: "red" }
-      // changeStyle( "p", style);
-      //
-      // $( "p" ).click(function( event ) {
-      //     alert( "Thanks for visiting!" );
-      // });
-      // $( "div" ).click(function() {
-      //   var color = $( this ).css( "background-color" );
-      //   $( "#result" ).html( "That div is <span style='color:" +
-      //     color + ";'>" + color + "</span>." );
-      // });
-
       // attributes & html in jQuery
       $('#changeLink').click(function() {
         console.log('change link clicked');
@@ -133,29 +125,60 @@ $( function() {
         console.log(lynk);
       });
 
+      // Change Display for mainDiv /* flex block grid */
+      $('#lg-value').change(function() {
+        lg_value = $('#lg-value').val();
+        $(".mainDiv").css("display",lg_value);
+      });
+
+      // SELECT-ELEMENTS PART
+      $(".btn-refresh-count").click(getValues);
+
+      // style = { backgroundColor: "red" , color: "blue" }
+      // changeStyle( "p", style);
+      // style = { "background-color": "blue" , color: "red" }
+      // changeStyle( "p", style);
+      //
+      // $( "p" ).click(function( event ) {
+      //     alert( "Thanks for visiting!" );
+      // });
+      // $( "div" ).click(function() {
+      //   var color = $( this ).css( "background-color" );
+      //   $( "#result" ).html( "That div is <span style='color:" +
+      //     color + ";'>" + color + "</span>." );
+      // });
+
+
+
+
   });
-  function changeStyle(element, styleType, styleValue) {
+
+  const changeStyle = function (element, styleType, styleValue) {
     $(element).css(styleType,styleValue);
   }
-  function init() {
+
+  const initialize = function() {
     animationDuration = $("#animationDuration").val();
-    console.log(animationDuration);
-    $('.linear-gradient').hide(animationDuration);
-    $('.box-model').hide(animationDuration);
-    $('.toolbar-Div').hide(animationDuration);
-    $('#tool-lg').hide(animationDuration);
+
+    $("#menuForm").hide();
+
+    $('#linear-gradient').hide();
+    $('#box-model').hide();
+    $('#toolbar-Div').hide();
+    $('#tool-lg').hide();
+    $("#select-elements").hide();
     mainDivContent = $('select#show-element').val();
-    // console.log(constructFlexValues());
+    getValues();
   }
 
-function constructFlexValues() {
-  a = ["<label for='Value'>Value</label>",
-  "<select class='lg-value' id='lg-value' onchange='lgValChange(this.value)'>",
-    "<option value='flex' selected='selected'>Flex</option>",
-    "<option value='block'>Block</option>",
-  "</select>"]
-  return a.join(' ');
-}
+// function constructFlexValues() {
+//   a = ["<label for='Value'>Value</label>",
+//   "<select class='lg-value' id='lg-value' onchange='lgValChange(this.value)'>",
+//     "<option value='flex' selected='selected'>Flex</option>",
+//     "<option value='block'>Block</option>",
+//   "</select>"]
+//   return a.join(' ');
+// }
 
 function propChange(v) {
   if (v === 'lg-display') {
@@ -184,7 +207,14 @@ function changeAnimationDuration() {
   animationDuration = $("#animationDuration").val();
 }
 
-
+const getValues = function() {
+  $("#link-count").text($('a').length);
+  $("#p-count").text($('p').length);
+  $("#a-count").text($('a').length);
+  $("#ul-count").text($("ul").length);
+  $("#h1-count").text($('h1').length);
+  $("#h2-count").text($('h2').length);
+}
 // Children
 // https://techfunda.com/howto/328/children-get-all-children-elements
 // $("div").children().css("background", "red");
