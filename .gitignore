@@ -3,3 +3,5 @@ javascript/ignore
 .sass-cache/
 orbit_resume_theme/
 projects/
+react/*/node_modules
+
