@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script src="../lib/jquery/jquery-3.6.0.js"></script>
+
+<script>
+  $(document).ready(function(){
+      $("#p1").mouseenter(function(){
+        console.log("p1 - You entered p1!");
+      });
+      $("#p2").mouseleave(function(){
+        console.log("p2 - Bye! You now leave p2!");
+      });
+      $("#p3").mousedown(function(){
+        console.log("p3 - Mouse down over p3!");
+      });
+      $("#p4").mouseup(function(){
+        console.log("p4 - Mouse up over p4!");
+      });
+
+      $("#p5").hover(function(){ // When mouse enters the HTML element
+          console.log("p5 - You entered p5!");
+        },
+        function(){ // When mouse leaves the HTML element
+          console.log("p5 - Bye! You now leave p5!");
+      });
+
+      $("input#firstname").focus(function(){
+        $(this).css("background-color", "#cccccc");
+      });
+
+      $("input#lastname").blur(function(){
+        $(this).css("background-color", "#0000ff");
+      });
+
+      $("h1.headingClass").on("click", function(){
+        $(this).hide();
+      });
+
+      $("p").on({
+         mouseenter: function(){
+           $(this).css("background-color", "lightgray");
+         },
+         mouseleave: function(){
+           $(this).css("background-color", "lightblue");
+         },
+         click: function(){
+           $(this).css("background-color", "yellow");
+         }
+      });
+
+  });
+</script>
+</head>
+<body>
+
+<p id="p1">P1 - Enter this paragraph. (mouseenter)</p>
+<p id="p2">P2 - Enter this paragraph. (mouseleave)</p>
+<p id="p3">P3 - Enter this paragraph. (mousedown)</p>
+<p id="p4">P4 - Enter this paragraph. (mouseup)</p>
+<p id="p5">P5 - Enter this paragraph. (hover)</p>
+<p id="p6">P6 - Enter this paragraph. (mouseenter)</p>
+<p id="p7">P7 - Enter this paragraph. (mouseenter)</p>
+<p id="p8">P8 - Enter this paragraph. (mouseenter)</p>
+<h1 class="headingClass"> Don't click me ! I will hide !! :-) </h1>
+
+<input id="firstname"></input>
+<input id="lastname"></input>
+
+</body>
+</html>

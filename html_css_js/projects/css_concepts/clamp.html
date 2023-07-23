@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTML TEMPLATE</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      /* clamp */
+      .box {
+        margin-inline: 30px;
+        margin-block: 30px;
+        border: 30px #fff;
+        padding: 3rem;
+        background-color: blue;
+        height: 300px;
+        width: clamp(100px, 25%, 300px);
+
+        /* width: 150px; */
+        /*  width: 70%;
+      min-width: 100px;
+      /*  */
+        /* equals to */
+        /* width: max(70%, 100px); */
+
+        /*  width: 70%;
+      max-width: 100px;
+      /* equals to */
+        /* width: min(70%, 100px); */
+      }
+      /* - clamp */
+    </style>
+  </head>
+  <body>
+    <!-- /* clamp */ -->
+    <div class="box">Box</div>
+    <!-- /* clamp */ -->
+  </body>
+</html>

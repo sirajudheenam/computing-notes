@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> 1-10 Boxes with Click</title>
+    <link rel="stylesheet" href="../css/array_box.css" />
+  </head>
+
+  <body onload="populateButtons()">
+    <button id="ajaxButton" type="button">Make a request</button>
+
+<script>
+  (() => {
+    let httpRequest;
+    document
+      .getElementById("ajaxButton")
+      .addEventListener("click", makeRequest);
+
+    function makeRequest() {
+      httpRequest = new XMLHttpRequest();
+
+      if (!httpRequest) {
+        alert("Giving up :( Cannot create an XMLHTTP instance");
+        return false;
+      }
+      httpRequest.onreadystatechange = alertContents;
+      httpRequest.open("GET", "test.html");
+      httpRequest.send();
+    }
+
+    function alertContents() {
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+          alert(httpRequest.responseText);
+        } else {
+          alert("There was a problem with the request.");
+        }
+      }
+    }
+  })();
+</script>
+
+    <div id="container">
+      <button id="btn-sample" onclick={}></button>
+    </div>
+    </br></br>
+    <h1 style="font-weight: bold; color: #b3005e; display: flex; justify-content: center; align-items: center; flex-wrap:wrap;">Remove values from the array</h1>
+    
+    <script src="./ajax_request.js"></script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: inherit; */
+}
+
+html {
+  font-size: 62.5%;
+  /* box-sizing: border-box; */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  color: #333;
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  /* display: block; */
+  /* display: flex - place the elements in columner way */
+  /* display: contents; - omits body background image or parent properties and display as content */
+  /* display: grid; */
+  align-items: center;
+  justify-content: center;
+}
+/* scroll behaviour smooth */
+
+p {
+  font-size: 2rem;
+  font-style: italic;
+  /* width: clamp(80px, 25%, 100px); */
+  color: greenyellow;
+  padding: 12px;
+  /* equivalent to 
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px; */
+
+  padding-inline: 8px;
+  /* equivalent to 
+  padding-left: 8px;
+  padding-right: 8px; 
+  */
+
+  padding-block: 8px;
+  /* equivalent to 
+  padding-top: 8px;
+  padding-bottom: 8px;
+  */
+
+  /* similarly  
+  margin-inline: 8px;
+  margin-block: 12px;
+  border-block: 12px;
+  border-inline: 12px yellow;
+   */
+}
+
+.top,
+.bottom {
+  height: 100vh;
+}
+/* - scroll behaviour smooth */
+.main-div {
+  /* box-sizing: content-box; */
+  /* display: flexbox; */
+  /* display: block; */
+  display: block;
+  background-color: bisque;
+  border-radius: 0.5rem;
+  color: rgb(9, 48, 9);
+  text-transform: uppercase;
+  text-emphasis: inherit;
+  text-align: center;
+  text-orientation: upright;
+  height: 20rem;
+  width: 40rem;
+  margin: auto;
+  padding: auto;
+}
+.main-div:hover {
+  background-color: powderblue;
+  color: rgb(119, 31, 136);
+}
+.child-div {
+  background-color: chartreuse;
+  color: green;
+  /* box-sizing: content-box; */
+  /* display: contents; */
+  /* display: block; */
+  border: purple;
+  border-radius: 0.5rem;
+  height: 6rem;
+  width: 16rem;
+  margin: auto;
+  padding: auto;
+  text-shadow: #5c8236;
+  font-size: x-small;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: capitalize;
+  box-shadow: #bf2e34;
+  text-shadow: #120215;
+}
+.child-div:hover {
+  /* display: flex-box; */
+  background-color: darkorchid;
+  color: rgb(101, 216, 93);
+  box-shadow: #5c8236;
+}
+#second {
+  scale: 0.8;
+}
+#second:hover {
+  scale: 1;
+}
+
+/* - inset */

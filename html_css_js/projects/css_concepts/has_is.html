@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTML TEMPLATE</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      div:has(p) {
+        font-size: 24px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      .container:is(h2, h6, button) {
+        color: darkgray;
+      }
+      /* is equivalent to 
+      .container h2,
+      .container h6,
+      .container button {
+        color: darkgray;
+      }
+      */
+    </style>
+  </head>
+  <body>
+    <div class="text-container">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum minus
+        dolorum dolores accusantium veritatis et debitis. Temporibus cum error
+        omnis eos excepturi fugiat itaque ea consectetur, doloremque, deleniti
+        illo porro.
+      </p>
+    </div>
+    <div class="container">
+      <h2>Sample text to demonstrate is</h2>
+      <h6>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
+        dicta molestiae non magni corrupti impedit architecto earum minus
+        quibusdam odit fuga temporibus accusamus totam, repellendus consequuntur
+        cupiditate enim distinctio veritatis?
+      </h6>
+      <button>New Button</button>
+    </div>
+  </body>
+</html>

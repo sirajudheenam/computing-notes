@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <title>12. Inserting Appending Elements</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="../../../../lib/jquery.min.js"></script>
+  <script src="../../../../lib/popper.min.js"></script>
+  <script src="../../../../lib/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="../../../../lib/coffeescript.js"></script>
+
+  <link rel="stylesheet" href="../../../../lib/bootstrap.min.css">
+
+  <style type="text/css">
+    #container {
+      display: flex;
+    }
+    .idCard {
+      width: 325px;
+      border: 1px solid black;
+      border-radius: 20px;
+      margin-top: 20px;
+      text-align: center;
+      font-family: 'Gils Sans', 'Gils Sans MT', Calibri, 'Trebuchet MS';
+      box-shadow: 2px 2px 2px #eee;
+      margin: 20px;
+    }
+    .idCard .picture {
+      width: 50%;
+      border: 1px solid black;
+    }
+    .office {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    .idCard .qr {
+      width: 50%;
+      font-size: 0.5em;
+    }
+
+    h3, h6 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <script>
+    $( function () {
+      $(".picture").one("click", function() {
+        $(this).before("<h2>Berlin Consulting Services</h2>");
+      });
+      $(".qr").one("click", function() {
+        $(this).after("<p>https://berlin-consulting-services.de</p>");
+      });
+      $("h1").one("click", function() {
+        $(this).prepend("<h3>Staff ID</h3>");
+        $(this).append("<h6>Employee</h6>");
+      });
+      $(".idCard p").click( function() {
+          if( $(this).text() == "286A Baloji, Kanniyakurichi Post 614017, India") {
+            $(this).text("Berlin, Germany");
+          } else {
+              $(this).text("286A Baloji, Kanniyakurichi Post 614017, India");
+          }
+        });
+    });
+  </script>
+
+
+<div id="container">
+  <div class="idCard">
+    <h1>Sirajudheen Mohamed Ali</h1>
+    <img src="../images/siraj.jpg" alt="Sirajudheen Mohamed Ali" class="picture" />
+    <p class="office">286A Baloji, Kanniyakurichi Post 614017, India</p>
+    <img src="../images/code2.png" alt="QR Code" class="qr" />
+  </div>
+</div>
+
+</body>
+</html>
