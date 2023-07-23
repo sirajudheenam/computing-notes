@@ -1,9 +1,0 @@
-#first {
-  color: yellow;
-}
-#second {
-  scale: 0.8;
-}
-#second:hover {
-  scale: 1;
-}

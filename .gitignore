@@ -4,4 +4,6 @@ javascript/ignore
 orbit_resume_theme/
 projects/
 react/*/node_modules
+.DS_Store
+*/**/.DS_Store
 
