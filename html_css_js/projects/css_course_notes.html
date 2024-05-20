@@ -1,150 +1,153 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CSS Course Notes</title>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-    <meta content="utf-8" http-equiv="encoding" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- <style type="text/css" media="screen"></style> -->
-    <!-- <script src="../lib/jquery.min.js"></script>
+<head>
+  <title>CSS Course Notes</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+  <meta content="utf-8" http-equiv="encoding" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- <style type="text/css" media="screen"></style> -->
+  <!-- <script src="../lib/jquery.min.js"></script>
   <script src="../lib/popper.min.js"></script>
   <script src="../lib/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../lib/coffeescript.js"></script>
+  
 
   <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
 
-    <script src="./lib/jquery-3.6.0.js"></script>
-    <script src="./lib/coffeescript.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/course-notes.css" />
-  </head>
-  <body>
-    <!-- <script src="PATH_TO_YOUR_JAVASCRIPT"></script> -->
-    <!-- <script> </script> -->
+  <!-- <script src="./lib/jquery-3.6.0.js"></script>
+  <script src="./lib/coffeescript.js"></script> -->
+  <link rel="stylesheet" href="../lib/bootstrap.css" />
+  <link rel="stylesheet" href="./css_course_notes.css" />
+  <script src="./cssCourseNotes.js"></script>
+</head>
 
-    <div class="container-mine">
-      <div class="cell">
-        <span class="span-float span-float--left"> float left </span>
-        <span class="span-float span-float--center">float center</span>
-        <span class="span-float span-float--right">float right</span>
-      </div>
-      <div class="cell">
-        2 <span class="span-float span-float--left"> float left </span>
-        <span class="span-float span-float--center">float center</span>
-        <span class="span-float span-float--right">float right</span>
-      </div>
-      <div class="cell">3</div>
-      <div class="cell">4</div>
-      <div class="cell">5</div>
-      <div class="cell">6</div>
+<body>
+  <!-- <script src="PATH_TO_YOUR_JAVASCRIPT"></script> -->
+  <!-- <script> </script> -->
+
+  <div class="container-mine">
+    <div class="cell">
+      <span class="span-float span-float--left"> float left </span>
+      <span class="span-float span-float--center">float center</span>
+      <span class="span-float span-float--right">float right</span>
     </div>
-    <hr />
-    <nav id="nav">
-      <div class="pull-right">
-        <a class="button button-danger" href="#"> Don't click here</a>
-      </div>
-    </nav>
+    <div class="cell">
+      2 <span class="span-float span-float--left"> float left </span>
+      <span class="span-float span-float--center">float center</span>
+      <span class="span-float span-float--right">float right</span>
+    </div>
+    <div class="cell">3</div>
+    <div class="cell">4</div>
+    <div class="cell">5</div>
+    <div class="cell">6</div>
+  </div>
+  <hr />
+  <nav id="nav">
+    <div class="pull-right">
+      <a class="button button-danger" href="#"> Don't click here</a>
+    </div>
+  </nav>
 
-    <h2>How CSS is parsed ? - Part 1</h2>
-    <h2>Cascading Style Sheets</h2>
-    <p>What is cascading :</p>
-    Process of combining different stylesheets and resolving conflicts between
-    different CSS rules and declarations when more than one rule applies to a
-    certain element.
-    <p>How cascading resolves conflicts between styles for the same element</p>
-    <div>
-      <p>Source of Styles</p>
+  <h2>How CSS is parsed ? - Part 1</h2>
+  <h2>Cascading Style Sheets</h2>
+  <p>What is cascading :</p>
+  Process of combining different stylesheets and resolving conflicts between
+  different CSS rules and declarations when more than one rule applies to a
+  certain element.
+  <p>How cascading resolves conflicts between styles for the same element</p>
+  <div>
+    <p>Source of Styles</p>
+    <ul>
+      <li>Author (developers who wrote .css and included in html)</li>
+      <li>User (changes the font on the browser)</li>
+      <li>
+        User Agent (Browser) - default style applied by browser for certain
+        elements
+      </li>
+    </ul>
+    Conflicting styles: <br />
+    <code> Importance(weight) > Specificity > Source Order </code>
+    <h3>Importance(weight)</h3>
+    <ol>
+      <li>User <code>!important</code> declarations</li>
+      <li>Author <code>!important</code> declarations</li>
+      <li>User declarations</li>
+      <li>Author declarations</li>
+      <li>Browser declarations</li>
+    </ol>
+    <h3>Specificity</h3>
+    <ol>
+      <li>Inline Styles</li>
+      <li>IDs</li>
+      <li>Classes, pseudo-classes, attribute</li>
+      <li>Elements and pseudo-elements</li>
+    </ol>
+    <ul>
+      Source Order
+      <li>
+        If a style with or more with same specificity values, the last
+        declared value will takes precedence.
+      </li>
+    </ul>
+    <div class="takeaway">
       <ul>
-        <li>Author (developers who wrote .css and included in html)</li>
-        <li>User (changes the font on the browser)</li>
+        Key takeaways:
         <li>
-          User Agent (Browser) - default style applied by browser for certain
-          elements
+          CSS declarations with <b><code>!important</code></b> keyword will
+          have the highest priority
+        </li>
+        <li>
+          But only use <b><code>!important</code></b> as a last resource. It
+          is better to use correct specificities - more maintainable code
+        </li>
+        <li>
+          Inline styles (declared on html page) will have precedence over
+          external stylesheets
+        </li>
+        <li>
+          A selector that contains one ID is more specific that a selector
+          with 1000 classes.
+        </li>
+        <li>
+          A selector that contains one Class is more specific that a selector
+          with 1000 elements.
+        </li>
+        <li>The Universal selector * has no specificity value (0,0,0,0)</li>
+        <li>
+          Rely more on <b>specificity</b> than on the <b>order</b> of
+          selectors
+        </li>
+        <li>
+          But rely on order when usign third-party stylesheets- always put
+          your author stlyesheet last.
         </li>
       </ul>
-      Conflicting styles: <br />
-      <code> Importance(weight) > Specificity > Source Order </code>
-      <h3>Importance(weight)</h3>
-      <ol>
-        <li>User <code>!important</code> declarations</li>
-        <li>Author <code>!important</code> declarations</li>
-        <li>User declarations</li>
-        <li>Author declarations</li>
-        <li>Browser declarations</li>
-      </ol>
-      <h3>Specificity</h3>
-      <ol>
-        <li>Inline Styles</li>
-        <li>IDs</li>
-        <li>Classes, pseudo-classes, attribute</li>
-        <li>Elements and pseudo-elements</li>
-      </ol>
-      <ul>
-        Source Order
-        <li>
-          If a style with or more with same specificity values, the last
-          declared value will takes precedence.
-        </li>
-      </ul>
-      <div class="takeaway">
-        <ul>
-          Key takeaways:
-          <li>
-            CSS declarations with <b><code>!important</code></b> keyword will
-            have the highest priority
-          </li>
-          <li>
-            But only use <b><code>!important</code></b> as a last resource. It
-            is better to use correct specificities - more maintainable code
-          </li>
-          <li>
-            Inline styles (declared on html page) will have precedence over
-            external stylesheets
-          </li>
-          <li>
-            A selector that contains one ID is more specific that a selector
-            with 1000 classes.
-          </li>
-          <li>
-            A selector that contains one Class is more specific that a selector
-            with 1000 elements.
-          </li>
-          <li>The Universal selector * has no specificity value (0,0,0,0)</li>
-          <li>
-            Rely more on <b>specificity</b> than on the <b>order</b> of
-            selectors
-          </li>
-          <li>
-            But rely on order when usign third-party stylesheets- always put
-            your author stlyesheet last.
-          </li>
-        </ul>
-      </div>
     </div>
+  </div>
 
-    <h2>How CSS is parsed ? - Part 2</h2>
-    <h3>CSS Value processing</h3>
+  <h2>How CSS is parsed ? - Part 2</h2>
+  <h3>CSS Value processing</h3>
 
-    <table class="table table-bordered table-striped">
-      <thead>
-        <td>width (paragraph)</td>
-        <td>padding (paragraph)</td>
-        <td>font-size (root)</td>
-        <td>font-size (section)</td>
-        <td>font-size (paragraph)</td>
-        <td>Code</td>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Declared Value (Author declarations)</td>
-          <td>140px; <br />66%</td>
-          <td>-</td>
-          <td>-</td>
-          <td>1.5rem</td>
-          <td>-</td>
-          <td rowspan="5">
-            <code>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <td>width (paragraph)</td>
+      <td>padding (paragraph)</td>
+      <td>font-size (root)</td>
+      <td>font-size (section)</td>
+      <td>font-size (paragraph)</td>
+      <td>Code</td>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Declared Value (Author declarations)</td>
+        <td>140px; <br />66%</td>
+        <td>-</td>
+        <td>-</td>
+        <td>1.5rem</td>
+        <td>-</td>
+        <td rowspan="5">
+          <code>
               &ltdiv class="section"&gt;
               <br />
               &lt;p class="amazing"&gt;CSS is really amazing&lt;/p&gt;
@@ -168,75 +171,75 @@
                 <p class="amazing">CSS is really amazing</p>
               </div>
             </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Cascaded Value (after the cascade)</td>
-          <td>66%</td>
-          <td>-</td>
-          <td>
-            16px<br />
-            (Browser/User Agent default)
-          </td>
-          <td>1.5rem</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Specified Value (defaulting if there is no cascaded value)</td>
-          <td>66%</td>
-          <td>0px <br />(initial value)</td>
-          <td>16px</td>
-          <td>1.5rem</td>
-          <td>24px(inherited from parent section)</td>
-        </tr>
-        <tr>
-          <td>Computed Value (converting relative value to absolute)</td>
-          <td>66%</td>
-          <td>0px</td>
-          <td>16px</td>
-          <td>24px [1.5rem * 16px (root font-size)]</td>
-          <td>24px</td>
-        </tr>
-        <tr>
-          <td>Used Value (final calculations, based on layout)</td>
-          <td>
-            184.8px <br />
-            (66% of parent element width 280px)
-          </td>
-          <td>0px</td>
-          <td>16px</td>
-          <td>24px</td>
-          <td>24px</td>
-        </tr>
-        <tr>
-          <td>Actual Value (browser and device restrictions)</td>
-          <td>185px</td>
-          <td>0px</td>
-          <td>16px</td>
-          <td>24px</td>
-          <td>24px</td>
-        </tr>
-      </tbody>
-    </table>
+        </td>
+      </tr>
+      <tr>
+        <td>Cascaded Value (after the cascade)</td>
+        <td>66%</td>
+        <td>-</td>
+        <td>
+          16px<br />
+          (Browser/User Agent default)
+        </td>
+        <td>1.5rem</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>Specified Value (defaulting if there is no cascaded value)</td>
+        <td>66%</td>
+        <td>0px <br />(initial value)</td>
+        <td>16px</td>
+        <td>1.5rem</td>
+        <td>24px(inherited from parent section)</td>
+      </tr>
+      <tr>
+        <td>Computed Value (converting relative value to absolute)</td>
+        <td>66%</td>
+        <td>0px</td>
+        <td>16px</td>
+        <td>24px [1.5rem * 16px (root font-size)]</td>
+        <td>24px</td>
+      </tr>
+      <tr>
+        <td>Used Value (final calculations, based on layout)</td>
+        <td>
+          184.8px <br />
+          (66% of parent element width 280px)
+        </td>
+        <td>0px</td>
+        <td>16px</td>
+        <td>24px</td>
+        <td>24px</td>
+      </tr>
+      <tr>
+        <td>Actual Value (browser and device restrictions)</td>
+        <td>185px</td>
+        <td>0px</td>
+        <td>16px</td>
+        <td>24px</td>
+        <td>24px</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <div class="cell">
-      <h2>How Units are converted from relative to absolute (px)?</h2>
+  <div class="cell">
+    <h2>How Units are converted from relative to absolute (px)?</h2>
 
-      <table class="table table-bordered table-striped">
-        <thead>
-          <td>Example (x)</td>
-          <td>How to convert pixels</td>
-          <td>Result in pixels</td>
-          <td>Code</td>
-        </thead>
-        <tbody>
-          <tr>
-            <th>% (fonts)</th>
-            <td>150% (fonts)</td>
-            <td>x% * parent's computed font-size(150% * 16px)</td>
-            <td>24px</td>
-            <td rowspan="5">
-              <code>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <td>Example (x)</td>
+        <td>How to convert pixels</td>
+        <td>Result in pixels</td>
+        <td>Code</td>
+      </thead>
+      <tbody>
+        <tr>
+          <th>% (fonts)</th>
+          <td>150% (fonts)</td>
+          <td>x% * parent's computed font-size(150% * 16px)</td>
+          <td>24px</td>
+          <td rowspan="5">
+            <code>
                 &lt;style&gt;<br />
                 html, body {<br />
                 font-size: 16px;<br />
@@ -256,266 +259,293 @@
                 <br />
                 &lt;/style&gt; <br />
               </code>
-            </td>
-          </tr>
-          <tr>
-            <th>% (lengths)</th>
-            <td>10% (lengths)</td>
-            <td>x% * parent's computed width (10% of 1000px)</td>
-            <td>100px</td>
-          </tr>
-          <tr>
-            <th>em (fonts)</th>
-            <td>3em (fonts)</td>
-            <td>x * parent's computed font size(3 * 24px)</td>
-            <td>72px</td>
-          </tr>
-          <tr>
-            <th>em (lengths)</th>
-            <td>2em (lengths)</td>
-            <td>x * current element's computed font size (2 * 24px)</td>
-            <td>48px</td>
-          </tr>
-          <tr>
-            <th>rem</th>
-            <td>10rem</td>
-            <td>x * root computed font size (10 * 16px)</td>
-            <td>160px</td>
-          </tr>
-          <tr>
-            <th>vh</th>
-            <td>90vh</td>
-            <td>x * 1% of viewport height</td>
-            <td>90% of current viewport height</td>
-          </tr>
-          <tr>
-            <th>vw</th>
-            <td>90vw</td>
-            <td>x * 1% of viewport width</td>
-            <td>80% of current viewport width</td>
-          </tr>
-        </tbody>
-      </table>
+          </td>
+        </tr>
+        <tr>
+          <th>% (lengths)</th>
+          <td>10% (lengths)</td>
+          <td>x% * parent's computed width (10% of 1000px)</td>
+          <td>100px</td>
+        </tr>
+        <tr>
+          <th>em (fonts)</th>
+          <td>3em (fonts)</td>
+          <td>x * parent's computed font size(3 * 24px)</td>
+          <td>72px</td>
+        </tr>
+        <tr>
+          <th>em (lengths)</th>
+          <td>2em (lengths)</td>
+          <td>x * current element's computed font size (2 * 24px)</td>
+          <td>48px</td>
+        </tr>
+        <tr>
+          <th>rem</th>
+          <td>10rem</td>
+          <td>x * root computed font size (10 * 16px)</td>
+          <td>160px</td>
+        </tr>
+        <tr>
+          <th>vh</th>
+          <td>90vh</td>
+          <td>x * 1% of viewport height</td>
+          <td>90% of current viewport height</td>
+        </tr>
+        <tr>
+          <th>vw</th>
+          <td>90vw</td>
+          <td>x * 1% of viewport width</td>
+          <td>80% of current viewport width</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <p>Need to know !! CSS Values</p>
+    <ul>
+      <li class="listItem">
+        Each property has an initial value, used if nothing is declared or if
+        there is no inheritance.
+      </li>
+      <li class="listItem">
+        Browsers specify <b>root font-size</b> for each page (usually 16px)
+      </li>
+      <li class="listItem">
+        percentages and relative values are always converted in to pixels
+      </li>
+      <li class="listItem">
+        Percentages are measured relative to their parent's <b>font-size</b>,
+        if used to specify font-size.
+      </li>
+      <li class="listItem">
+        Percentages are measured relative to their parent's width, if used to
+        specify lengths.
+      </li>
+      <li class="listItem">
+        <b>em</b> are measured relative to their parent's font-size, if used
+        to specify font-size.
+      </li>
+      <li class="listItem">
+        <b>em</b> are measured relative to current font-size, if used to
+        specify lengths.
+      </li>
+      <li class="listItem">
+        <b>rem</b> are always measured relative to document's
+        <b>root font-size</b> ,
+      </li>
+      <li class="listItem">
+        <b>vh and vw </b>are simply percentage measurements of current view
+        port's height and width
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>THINK</li>
+      <li>BUILD</li>
+      <li>
+        ARCHITECT
+        <span>7 Folders </span>
+        <ol>
+          <li>base - basic project definition</li>
+          <li>components - one file for each component</li>
+          <li>layout - overall layout of the project definition</li>
+          <li>pages - styles for specific pages</li>
+          <li>themes - if wish to implement different themes</li>
+          <li>
+            abstracts - stuff which doesn't provide any outputs such as
+            <code>mixins or variables</code>
+          </li>
+          <li>vendors - third party css goes here.</li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container-fluid d-md-grid">
+    <div class="box">
+      <p>Load HTML</p>
+    </div>
+    <div class="box">
+      <p>Parse HTML</p>
     </div>
 
-    <div>
-      <p>Need to know !! CSS Values</p>
+    <div class="box">Document Object Model (DOM)</div>
+    <div class="box">
+      <p>Load CSS</p>
       <ul>
         <li>
-          Each property has an initial value, used if nothing is declared or if
-          there is no inheritance.
+          <div class="box box--inner">Parse CSS</div>
         </li>
         <li>
-          Browsers specify <b>root font-size</b> for each page (usually 16px)
+          <div class="box box--inner">Cascade (Conflicting styles)</div>
         </li>
         <li>
-          percentages and relative values are always converted in to pixels
-        </li>
-        <li>
-          Percentages are measured relative to their parent's <b>font-size</b>,
-          if used to specify font-size.
-        </li>
-        <li>
-          Percentages are measured relative to their parent's width, if used to
-          specify lengths.
-        </li>
-        <li>
-          <b>em</b> are measured relative to their parent's font-size, if used
-          to specify font-size.
-        </li>
-        <li>
-          <b>em</b> are measured relative to current font-size, if used to
-          specify lengths.
-        </li>
-        <li>
-          <b>rem</b> are always measured relative to document's
-          <b>root font-size</b> ,
-        </li>
-        <li>
-          <b>vh and vw </b>are simply percentage measurements of current view
-          port's height and width
+          <div class="box box--inner">Process final CSS values</div>
         </li>
       </ul>
     </div>
-    <div>
-      <ul>
-        <li>THINK</li>
-        <li>BUILD</li>
-        <li>
-          ARCHITECT
-          <span>7 Folders </span>
-          <ol>
-            <li>base - basic project definition</li>
-            <li>components - one file for each component</li>
-            <li>layout - overall layout of the project definition</li>
-            <li>pages - styles for specific pages</li>
-            <li>themes - if wish to implement different themes</li>
-            <li>
-              abstracts - stuff which doesn't provide any outputs such as
-              <code>mixins or variables</code>
-            </li>
-            <li>vendors - third party css goes here.</li>
-          </ol>
-        </li>
-      </ul>
+    <div class="box">
+      <p>CSS Object Model (CSSOM)</p>
     </div>
-
-    <div class="container-fluid d-md-grid">
-      <div class="box"><p>Load HTML</p></div>
-      <div class="box"><p>Parse HTML</p></div>
-
-      <div class="box">Document Object Model (DOM)</div>
-      <div class="box">
-        <p>Load CSS</p>
-        <ul>
-          <li>
-            <div class="box box--inner">Parse CSS</div>
-          </li>
-          <li>
-            <div class="box box--inner">Cascade (Conflicting styles)</div>
-          </li>
-          <li>
-            <div class="box box--inner">Process final CSS values</div>
-          </li>
-        </ul>
-      </div>
-      <div class="box"><p>CSS Object Model (CSSOM)</p></div>
-      <div class="box"><p>Render Tree</p></div>
-      <div class="box"><p>Rendering - Visual Formatting Model</p></div>
-      <div class="box"><p>Final Rendered Page</p></div>
+    <div class="box">
+      <p>Render Tree</p>
     </div>
-
-    <div>
-      <hr />
+    <div class="box">
+      <p>Rendering - Visual Formatting Model</p>
     </div>
-
-    <ol>
-      Inheritance - Part 3 - How CSS parsed?
-      <li>
-        Inheritance passes some specific properties from parent to children -
-        more maintainable code;
-      </li>
-      <li>
-        properties related to text are inherited;
-        <code>font-size, font-family, color </code>(text) etc.,
-      </li>
-      <li>
-        The computed value of a property gets inherited not the declared value.
-      </li>
-      <li>
-        Inheritance of a property only works if no one declares a value for the
-        property
-      </li>
-      <li>
-        The <code>inherit</code> keyword forces forces inheritance on a certain
-        property
-      </li>
-      <li>
-        The <code>initial</code> keyword resets the property to its initial
-        value
-      </li>
-    </ol>
-
-    <div>
-      <hr />
+    <div class="box">
+      <p>Final Rendered Page</p>
     </div>
+  </div>
 
-    <ul>
-      <li>Converting px to rem and why?</li>
-      <li>Root level change of font-size to percentage and why ?</li>
-      <li>BEM - Block Element Modifier</li>
-    </ul>
+  <div>
+    <hr />
+  </div>
 
-    <ul>
-      <p>
-        <b>Visual Formatting Model:</b> Algorithm that calculates boxes and
-        determines the layout of these boxes, for each element in the render
-        tree, in order to determine the layout of the final page.
-      </p>
-      <li><b>Dimension of boxes:</b> the box model;</li>
-      <li><b>Box type:</b><code>inline or block or inline-block;</code></li>
-      <li>Positioning scheme: <code>floats and position</code></li>
-      <li>Stacking contexts</li>
-      <li>Other elements in the rendering tree (siblings or parents)</li>
-      <li>Viewport size, dimensions of images etc.,</li>
-    </ul>
 
-    <style></style>
+  <h2> Inheritance - Part 3 - How CSS parsed? </h2>
+  <ol>
+    <li>
+      Inheritance passes some specific properties from parent to children -
+      more maintainable code;
+    </li>
+    <li>
+      properties related to text are inherited;
+      <code>font-size, font-family, color </code>(text) etc.,
+    </li>
+    <li>
+      The computed value of a property gets inherited not the declared value.
+    </li>
+    <li>
+      Inheritance of a property only works if no one declares a value for the
+      property
+    </li>
+    <li>
+      The <code>inherit</code> keyword forces inheritance on a certain
+      property
+    </li>
+    <li>
+      The <code>initial</code> keyword resets the property to its initial
+      value
+    </li>
+  </ol>
 
-    <h3>The box model</h3>
-    <div class="container-fluid">
-      <div class="cell-two">
-        <div class="margin-div">
-          <div class="border-div">
-            <div class="padding-div">
-              <div class="content-div">content</div>
-            </div>
+  <div>
+    <hr />
+  </div>
+
+  <ul>
+    <li>Converting px to rem and why?</li>
+    <li>Root level change of font-size to percentage and why ?</li>
+    <li>BEM - Block Element Modifier</li>
+  </ul>
+
+  <ul>
+    <p>
+      <b>Visual Formatting Model:</b> Algorithm that calculates boxes and
+      determines the layout of these boxes, for each element in the render
+      tree, in order to determine the layout of the final page.
+    </p>
+    <li><b>Dimension of boxes:</b> the box model;</li>
+    <li><b>Box type:</b><code>inline or block or inline-block;</code></li>
+    <li>Positioning scheme: <code>floats and position</code></li>
+    <li>Stacking contexts</li>
+    <li>Other elements in the rendering tree (siblings or parents)</li>
+    <li>Viewport size, dimensions of images etc.,</li>
+  </ul>
+
+  <style></style>
+
+  <h3>The box model</h3>
+  <div class="container-fluid">
+    <div class="cell-two">
+      <div class="margin-div">
+        <div class="border-div">
+          <div class="padding-div">
+            <div class="content-div">content</div>
           </div>
         </div>
+      </div>
 
-        <div class="margin-div-legend">margin</div>
-        <div class="border-div-legend">border</div>
-        <div class="padding-div-legend">padding</div>
-        <div class="content-div-legend">content</div>
+      <div class="margin-div-legend">margin</div>
+      <div class="border-div-legend">border</div>
+      <div class="padding-div-legend">padding</div>
+      <div class="content-div-legend">content</div>
+    </div>
+  </div>
+
+  <div>
+    <ul>
+      <li>Content: text, images etc.,</li>
+      <li>Padding: transparent area around the content, inside of the box</li>
+      <li>Border: goes around the padding and the content</li>
+      <li>Margin: space beteween the boxes</li>
+      <li>
+        Fill area: area that gets filled with background color or background
+        image
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <hr />
+  </div>
+
+  <div>
+    <h2> The box model </h2>
+    <h3>Heights and Widths</h3>
+    <b> total width </b> = right border + right padding + width + left padding + left
+    width <br />
+    <div class='box-model-width-outer'>
+      <div class='box-model-width-inner'> Inner
+        <input class="left-border" name="left-border" placeholder="Left Border" />
+        <input class="left-padding" name="left-padding" placeholder="Left Padding" />
+        <input class="width" name="width" placeholder="Width" />
+        <input class="right-border" name="right-border" placeholder="Right Border" />
+        <input class="right-padding" name="right-padding" placeholder="Right Padding" />
       </div>
     </div>
 
-    <div>
-      <ul>
-        <li>Content: text, images etc.,</li>
-        <li>Padding: transparent area around the content, inside of the box</li>
-        <li>Border: goes around the padding and the content</li>
-        <li>Margin: space beteween the boxes</li>
-        <li>
-          Fill area: area that gets filled with background color or background
-          image
-        </li>
-      </ul>
-    </div>
+    <br />
 
-    <div>
-      <hr />
-    </div>
 
-    <div>
-      The box model
-      <h2>Heights and Widths</h2>
-      total width = right border + right padding + width + left padding + left
-      width <br />
-      Example: width = 0px + 20px + 100px + 20px + 0px = 140px <br />
-      total height = top border + top padding + width + bottom padding + bottom
-      width <br />
-      Example: width = 0px + 10px + 100px + 10px + 0px = 120px <br />
+    Example: width = 0px + 20px + 100px + 20px + 0px = 140px <br />
+    total height = top border + top padding + width + bottom padding + bottom
+    width <br />
+    Example: width = 0px + 10px + 100px + 10px + 0px = 120px <br />
 
-      <code>box-sizing: border-box</code>
-      If we use this <code>box-sizing: border-box</code>, then specified width
-      or height become the element's actual width or height without adding those
-      padding and borders to the calculation.
-    </div>
+    <code>box-sizing: border-box</code>
+    If we use this <code>box-sizing: border-box</code>, then specified width
+    or height become the element's actual width or height without adding those
+    padding and borders to the calculation.
+  </div>
 
-    <div>
-      <hr />
-    </div>
+  <div>
+    <hr />
+  </div>
 
+  <button class="bdr-bx-btn">Box model</button>
+
+  <div class="bx-demo">
+    <button>Box model</button>
+  </div>
+  <div>
+    <hr />
+  </div>
+  <div class="bdr-bx-demo">
     <button class="bdr-bx-btn">Box model</button>
+  </div>
 
-    <div class="bx-demo">
-      <button>Box model</button>
-    </div>
-    <div>
-      <hr />
-    </div>
-    <div class="bdr-bx-demo">
-      <button class="bdr-bx-btn">Box model</button>
-    </div>
+  <div class="outer">
+    <div class="box1">The inner box is 90% - 30px.</div>
+  </div>
+  <div class="box2"></div>
+  <div></div>
 
-    <div class="outer">
-      <div class="box1">The inner box is 90% - 30px.</div>
-    </div>
-    <div class="box2"></div>
-    <div></div>
+  <div class="box3">I use the standard box model.</div>
+  <div class="box3 alternate">I use the alternate box model.</div>
+</body>
 
-    <div class="box3">I use the standard box model.</div>
-    <div class="box3 alternate">I use the alternate box model.</div>
-  </body>
 </html>

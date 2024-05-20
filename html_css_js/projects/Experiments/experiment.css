@@ -1,0 +1,15 @@
+.box {
+    margin: .2rem;
+    padding: .2rem;
+    border: .2rem solid green;
+    border-radius: .5rem;
+    background: yellow;
+}
+
+.container {
+    margin: .2rem;
+    padding: .2rem;
+    border: .2rem solid green;
+    border-radius: .5rem;
+    background: yellowgreen;
+}

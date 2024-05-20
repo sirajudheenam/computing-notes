@@ -1,7 +1,7 @@
 <html>
-<head>
-   <title>Dynnamic Form</title>
-   <style>
+  <head>
+    <title>Dynnamic Form</title>
+    <style>
     div#myform{
       text-align:center;
       border: 1px solid #ccc;
@@ -10,9 +10,10 @@
       padding: 0px 50px 15px;
       margin-top:200px;
       margin-left:200px;
+      /* margin: auto; */
       box-shadow: 0 0 10px #00cd00;
       border-radius: 10px;
-      float:left;
+      /* float:right; */
     }
 
     div#myform:hover {
@@ -66,12 +67,14 @@
 
 </style>
 
-</head>
-<body>
-   <div id="main">
-   <div id="myform"></div>
+  </head>
+  <body>
+    <div id="main">
+      <div id="myform">
 
-   <script>
+      </div>
+
+      <script>
     var x = document.getElementById("myform");
 
     var createform = document.createElement('form'); // Create New Element form
@@ -125,6 +128,5 @@
 
 </script>
 
-
-</body>
-</html>
+    </body>
+  </html>

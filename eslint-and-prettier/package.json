@@ -1,0 +1,19 @@
+{
+  "name": "eslint-and-prettier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "eslint-config-wesbos": "^3.2.3",
+    "prettier": "^2.8.8",
+    "typescript": "^4.9.5"
+  }
+}

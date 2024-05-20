@@ -1,0 +1,162 @@
+body {
+    background-color: linen;
+}
+
+.box-one {
+    height: 40px;
+    width: 400px;
+    background-color: yellow;
+    color: blue;
+    border: 2px solid yellow;
+    border-radius: .5rem;
+    animation: fadeIn ease 20s;
+    box-shadow: -10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+
+    /* fadeIn 'slow'; */
+}
+
+.box-two {
+    height: 50px;
+    width: 400px;
+    background-color: green;
+    color: blue;
+    border: 1px solid green;
+    border-radius: .5rem;
+    box-shadow: -10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    /* fadeIn 'slow'; */
+}
+
+h1 {
+    color: maroon;
+    margin-left: 40px;
+}
+
+p {
+    text-align: center;
+}
+
+/* Container grid cell */
+.top-container {
+    display: grid;
+    /* static column size */
+    grid-template-columns: 100px 100px 100px;
+    /*dynamic fr (fraction unit) for flexible spacing to fill 3 columns relative to screenwidth*/
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-rows: 100px 100px;
+    grid-gap: .5rem;
+}
+
+.cell {
+    background-color: lightblue;
+    border: solid 1px blue;
+    line-height: 100px;
+    text-align: center;
+    border-radius: .5rem;
+}
+
+.special {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    background-color: orange;
+}
+
+.bottom-container {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px;
+    grid-gap: 1rem;
+    grid-template-areas:
+        'top 		top'
+        'middle-1 middle-2 '
+        'bottom 	bottom';
+
+}
+
+.cell1 {
+    background-color: lightblue;
+    border: solid 1px blue;
+    line-height: 100px;
+    text-align: center;
+}
+
+.top {
+    grid-area: top;
+    background-color: green;
+    border-radius: .5rem;
+}
+
+.middle-1 {
+    grid-area: middle-1;
+    background-color: orange;
+    border-radius: .5rem;
+}
+
+.middle-2 {
+    grid-area: middle-2;
+    background-color: yellow;
+    border-radius: .5rem;
+}
+
+.bottom {
+    grid-area: bottom;
+    background-color: blue;
+    border-radius: .5rem;
+}
+
+.fade-in {
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

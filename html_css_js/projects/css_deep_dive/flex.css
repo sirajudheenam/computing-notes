@@ -1,0 +1,130 @@
+* {
+    font-size: 62.5%;
+}
+
+html {
+    background-color: orange;
+}
+
+.menu {
+    border: 0.5rem blue;
+    border-radius: 1rem;
+
+    margin: 1rem;
+    padding: 1rem;
+
+    height: 5%;
+    width: 90%;
+
+    /* background-color: rgb(69, 71, 76); */
+    background: linear-gradient(orange 0%,
+            red 25%,
+            green 50%,
+            yellow 75%,
+            orange 100%);
+    box-shadow: 8px 8px rgb(212, 215, 224);
+
+    font-family: Arial, Helvetica, sans-serif;
+    /* system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
+}
+
+.flex-container {
+    border: 0.5rem red;
+    border-radius: 1rem;
+
+    margin: 2rem;
+    padding: 2rem;
+
+    width: 100rem;
+    height: 60rem;
+
+    /* border: 2rem green; */
+
+    /* background-color: rgb(85, 218, 32); */
+    background: linear-gradient(to bottom, red 0%,
+            orange 25%,
+            purple 50%,
+            green 75%,
+            purple 100%);
+
+    /* box-shadow: 8px 8px rgb(212, 215, 224); */
+    box-shadow: 5px 5px rgb(160, 164, 174);
+    /* display: block; # default */
+
+    /* flex properties */
+
+    display: flex;
+
+    flex-direction: column;
+    /* row | row-reverse | column | column-reverse; */
+    flex-wrap: wrap;
+    /* nowrap | wrap | wrap-reverse; */
+    /* flex-flow: column wrap; */
+    align-items: safe;
+    /* stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end + ... safe | unsafe; */
+    align-content: center;
+    /* flex-start | flex-end | center | space-between | space-around |space-evenly | stretch | start | end | baseline | first baseline | last baseline + ... safe | unsafe;*/
+
+    justify-content: center;
+    /* flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
+
+    gap: 10px;
+    /* gap: 0.5rem 0.7rem; */
+    /* row-gap column gap */
+    /* row-gap: 0.2rem;
+    column-gap: 0.2rem; */
+
+    /* float: right; */
+    float: auto;
+
+}
+
+.flex-container:hover {
+    /* background: linear-gradient(to top, red 0%,
+            orange 25%,
+            blue 50%,
+            green 75%,
+            purple 100%); */
+    background: linear-gradient(to top, red 0%,
+            orange 25%,
+            purple 50%,
+            green 75%,
+            purple 100%);
+    box-shadow: rgb(from blue 80 40 20);
+}
+
+.flex-container p {
+    display: block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.flex-container-item {
+    border: .1rem solid rgb(233, 233, 239);
+    border-radius: 5px;
+
+    padding: 1rem;
+    margin: auto;
+
+    height: 8rem;
+    width: 15rem;
+
+    background: coral;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+
+    -webkit-transition: all .8s ease;
+    transition: all .8s ease;
+
+}
+
+.flex-container-item:hover {
+
+    background: blue;
+    color: white;
+
+    padding: 1.5rem;
+    margin: auto;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

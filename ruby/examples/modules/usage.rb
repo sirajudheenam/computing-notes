@@ -13,3 +13,8 @@ quotes.add_quote('The ego is an ingredient of the flow of balance')
 quotes.add_quote('Perception fears karmic success')
 
 quotes.print_all_quotes
+
+post = Post.new('Elizabeth', 'John Doe')
+post.add_tag 'history'
+
+post.print_post_summary
