@@ -44,5 +44,10 @@ helm delete first
 release "first" uninstalled
 
 
+To remove the old duplicate Grafana:
+helm uninstall my-grafana -n monitoring
+
+Then confirm only one Grafana remains:
+kubectl get pods -n monitoring | grep grafana
 
 ```
