@@ -379,9 +379,302 @@ env:
 
 ---
 
+---
+
+## Entry-Level Practice Plan
+
+> Based on self-assessment (2026-10-05):
+> - Pods/Deployments/Services: Familiar
+> - ConfigMaps/Secrets/Volumes: Not yet
+> - Troubleshooting: Beginner
+> - Multi-container pods: Not yet
+
+### Level assessment → practice priority
+
+| Topic | Status | Priority |
+|---|---|---|
+| Pod lifecycle, restartPolicy | Familiar | Drill speed |
+| Deployments — rollout/rollback/scale | Familiar | Drill speed |
+| Services — ClusterIP, expose | Familiar | Drill speed |
+| ConfigMaps as env vars | Not yet | **Start here** |
+| ConfigMaps as volume mounts | Not yet | **Start here** |
+| Secrets as env vars | Not yet | **Start here** |
+| Multi-container pods (init + sidecar) | Not yet | Week 1 |
+| Resource requests/limits | Not yet | Week 1 |
+| Troubleshooting flow (describe/logs/exec) | Beginner | Repeat daily |
+
+---
+
+### Practice Exercise 1 — ConfigMap as environment variable
+
+**Objective:** Create a ConfigMap and consume it as env vars inside a pod.
+
+**Step 1:** Create the ConfigMap imperatively:
+```bash
+kubectl create configmap app-env \
+  --from-literal=APP_ENV=staging \
+  --from-literal=APP_PORT=3000 \
+  -n cka
+```
+
+**Step 2:** Verify it was created:
+```bash
+kubectl get configmap app-env -n cka
+kubectl describe configmap app-env -n cka
+```
+
+**Step 3:** Create a pod that reads from it — save as `tmp/cm-env-pod.yaml`:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-env-demo
+  namespace: cka
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "echo APP_ENV=$APP_ENV APP_PORT=$APP_PORT && sleep 3600"]
+    env:
+    - name: APP_ENV
+      valueFrom:
+        configMapKeyRef:
+          name: app-env
+          key: APP_ENV
+    - name: APP_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: app-env
+          key: APP_PORT
+  restartPolicy: Never
+```
+
+**Step 4:** Apply and verify the env vars are visible inside the container:
+```bash
+kubectl apply -f tmp/cm-env-pod.yaml
+kubectl logs cm-env-demo -n cka
+# Expected: APP_ENV=staging APP_PORT=3000
+```
+
+**Step 5:** Clean up:
+```bash
+kubectl delete pod cm-env-demo -n cka
+```
+
+---
+
+### Practice Exercise 2 — ConfigMap as a volume (file mount)
+
+**Objective:** Mount a ConfigMap as files inside a pod — each key becomes a file.
+
+**Step 1:** Create a ConfigMap with a config file content:
+```bash
+kubectl create configmap nginx-conf \
+  --from-literal=app.properties="debug=true\nlog_level=info" \
+  -n cka
+```
+
+**Step 2:** Create a pod that mounts it — save as `tmp/cm-vol-pod.yaml`:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-vol-demo
+  namespace: cka
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "cat /etc/config/app.properties && sleep 3600"]
+    volumeMounts:
+    - name: config-vol
+      mountPath: /etc/config
+  volumes:
+  - name: config-vol
+    configMap:
+      name: nginx-conf
+  restartPolicy: Never
+```
+
+**Step 3:** Apply and check the file is mounted:
+```bash
+kubectl apply -f tmp/cm-vol-pod.yaml
+kubectl logs cm-vol-demo -n cka
+# Expected: debug=true\nlog_level=info
+
+# Also exec in and browse:
+kubectl exec -it cm-vol-demo -n cka -- sh
+ls /etc/config/
+cat /etc/config/app.properties
+```
+
+---
+
+### Practice Exercise 3 — Secret as environment variable
+
+**Objective:** Create a Secret and inject it as env vars — same pattern as ConfigMap but base64-encoded at rest.
+
+**Step 1:** Create the Secret:
+```bash
+kubectl create secret generic db-creds \
+  --from-literal=DB_USER=admin \
+  --from-literal=DB_PASS=supersecret \
+  -n cka
+```
+
+**Step 2:** Verify — note values are base64 in the raw YAML:
+```bash
+kubectl get secret db-creds -n cka -o yaml
+# DB_PASS will show as base64 — decode with: echo "<value>" | base64 -d
+```
+
+**Step 3:** Create a pod that uses it — save as `tmp/secret-env-pod.yaml`:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-env-demo
+  namespace: cka
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "echo DB_USER=$DB_USER && sleep 3600"]
+    env:
+    - name: DB_USER
+      valueFrom:
+        secretKeyRef:
+          name: db-creds
+          key: DB_USER
+    - name: DB_PASS
+      valueFrom:
+        secretKeyRef:
+          name: db-creds
+          key: DB_PASS
+  restartPolicy: Never
+```
+
+**Step 4:** Apply and verify:
+```bash
+kubectl apply -f tmp/secret-env-pod.yaml
+kubectl logs secret-env-demo -n cka
+kubectl exec -it secret-env-demo -n cka -- sh -c 'echo $DB_PASS'
+```
+
+---
+
+### Practice Exercise 4 — Multi-container pod (init container)
+
+**Objective:** Write a pod where an init container runs first and completes before the main container starts.
+
+**Concept:** Init containers are for setup tasks — waiting for a service, pre-populating a volume, running migrations. Main container only starts after ALL init containers exit 0.
+
+Save as `tmp/init-pod.yaml`:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-demo
+  namespace: cka
+spec:
+  initContainers:
+  - name: init-setup
+    image: busybox
+    command: ["sh", "-c", "echo 'init complete' > /work/ready.txt"]
+    volumeMounts:
+    - name: work-vol
+      mountPath: /work
+  containers:
+  - name: main
+    image: busybox
+    command: ["sh", "-c", "cat /work/ready.txt && sleep 3600"]
+    volumeMounts:
+    - name: work-vol
+      mountPath: /work
+  volumes:
+  - name: work-vol
+    emptyDir: {}
+  restartPolicy: Never
+```
+
+Apply and watch the init container run first:
+```bash
+kubectl apply -f tmp/init-pod.yaml
+kubectl get pod init-demo -n cka -w    # watch state: Init:0/1 → PodInitializing → Running
+kubectl logs init-demo -n cka -c init-setup
+kubectl logs init-demo -n cka -c main
+```
+
+---
+
+### Practice Exercise 5 — Sidecar container (shared volume)
+
+**Objective:** Two containers in one pod sharing a volume — main writes logs, sidecar reads them.
+
+Save as `tmp/sidecar-pod.yaml`:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-demo
+  namespace: cka
+spec:
+  containers:
+  - name: writer
+    image: busybox
+    command: ["sh", "-c", "while true; do echo $(date) >> /logs/app.log; sleep 2; done"]
+    volumeMounts:
+    - name: log-vol
+      mountPath: /logs
+  - name: reader
+    image: busybox
+    command: ["sh", "-c", "tail -f /logs/app.log"]
+    volumeMounts:
+    - name: log-vol
+      mountPath: /logs
+  volumes:
+  - name: log-vol
+    emptyDir: {}
+```
+
+Apply and watch sidecar reading what writer writes:
+```bash
+kubectl apply -f tmp/sidecar-pod.yaml
+kubectl logs sidecar-demo -n cka -c reader -f
+```
+
+---
+
+### Daily Troubleshooting Drill
+
+Run this every session — takes 5 minutes, builds muscle memory:
+
+```bash
+# 1. Get overview
+kubectl get pods -n cka
+
+# 2. Pick a pod and describe it
+kubectl describe pod <name> -n cka
+
+# 3. Check logs
+kubectl logs <name> -n cka
+
+# 4. Exec in
+kubectl exec -it <name> -n cka -- sh
+
+# 5. Check events across the namespace
+kubectl get events -n cka --sort-by='.lastTimestamp'
+```
+
+> Tip: `kubectl get events` is often more informative than `describe` for timing-related issues.
+
+---
+
 ## Internals Log
 
 ### 2026-10-05
 - Created `cka` namespace in kind cluster
 - Debugged StatefulSet with missing StorageClass (`my-storage-class` → `standard`)
 - Set up this CKA.md study guide
+- Assessed entry level: familiar with Pods/Deployments/Services, no hands-on with ConfigMaps/Secrets/Volumes/multi-container pods
+- Added entry-level practice exercises 1–5 (ConfigMap env, ConfigMap volume, Secret env, init container, sidecar)
